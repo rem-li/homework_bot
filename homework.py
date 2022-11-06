@@ -82,9 +82,7 @@ def check_response(response):
 
 
 def parse_status(homework):
-    """Извлекает из информации о конкретной домашней
-    работе статус этой работы.
-    """
+    """Извлекает статус домашки."""
     if len(homework) == 0:
         logger.error('no homework to check')
         raise Exception('Нет домашки для проверки')
@@ -98,9 +96,7 @@ def parse_status(homework):
 
 
 def check_tokens():
-    """Проверяет доступность переменных окружения, которые необходимы для
-    работы программы.
-    """
+    """Проверяет доступность переменных окружения."""
     if PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID:
         return True
     logger.critical('check tokens fails')
