@@ -45,8 +45,7 @@ HOMEWORK_STATUSES = {
 
 
 def send_message(bot, message):
-    """Отправляет сообщение в Telegram чат"""
-
+    """Отправляет сообщение в Telegram чат."""
     try:
         bot.send_message(
             chat_id=TELEGRAM_CHAT_ID,
@@ -58,8 +57,7 @@ def send_message(bot, message):
 
 
 def get_api_answer(current_timestamp):
-    """Делает запрос к эндпоинту API-сервиса"""
-
+    """Делает запрос к эндпоинту API-сервиса."""
     timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}
     response = requests.get(ENDPOINT, headers=HEADERS, params=params)
@@ -70,8 +68,7 @@ def get_api_answer(current_timestamp):
 
 
 def check_response(response):
-    """Проверяет ответ API на корректность"""
-
+    """Проверяет ответ API на корректность."""
     if len(response) == 0:
         logger.error('bad responce from api')
         raise Exception('Пустой словарь')
@@ -86,9 +83,8 @@ def check_response(response):
 
 def parse_status(homework):
     """Извлекает из информации о конкретной домашней
-    работе статус этой работы
+    работе статус этой работы.
     """
-
     if len(homework) == 0:
         logger.error('no homework to check')
         raise Exception('Нет домашки для проверки')
@@ -103,9 +99,8 @@ def parse_status(homework):
 
 def check_tokens():
     """Проверяет доступность переменных окружения, которые необходимы для
-    работы программы
+    работы программы.
     """
-
     if PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID:
         return True
     logger.critical('check tokens fails')
@@ -114,7 +109,6 @@ def check_tokens():
 
 def main():
     """Основная логика работы бота."""
-
     bot = Bot(token=TELEGRAM_TOKEN)
     current_timestamp = int(time.time())
     last_status = ''
